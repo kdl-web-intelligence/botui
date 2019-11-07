@@ -233,7 +233,12 @@
         throw Error('BotUI: "content" is required in a non-loading message object.');
       }
 
-      _msg.type = _msg.type || 'text';
+      if(_msg.human){
+        _msg.type = 'human';
+      } else {
+        _msg.type = _msg.type || 'text';
+      }
+
       _msg.visible = (_msg.delay || _msg.loading) ? false : true;
       var _index = _instance.messages.push(_msg) - 1;
 
